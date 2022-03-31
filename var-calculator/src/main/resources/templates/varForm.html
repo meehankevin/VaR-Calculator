@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>VaR Calculator</title>
+<style>
+h1 {
+	text-align: center;
+}
+</style>
+
+<link rel="stylesheet"
+	th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+
+</head>
+
+<body>
+
+	<h1>Value at Risk (VaR) Calculator</h1>
+
+	<main role="main" class="container">
+
+		<form action="#" th:action="@{/index}" th:object="${varForm}"
+			method="post">
+			<div class="d-flex flex-row justify-content-between"
+				style="margin: 100px;">
+
+				<div class="p-2">
+					<label>Portfolio name: </label>
+					<p th:text="*{portfolio.name}">The selected portfolio</p>
+				</div>
+
+				<div class="p-2">
+					<select th:field="*{confidenceLevel}">
+						<option th:each="conf : *{confidenceLevels}" th:value="${conf}"
+							th:text="${conf}"></option>
+					</select>
+				</div>
+
+				<input type="hidden" th:field="*{portfolio}" /> 
+				<button type="submit">Compute VaR</button>
+			</div>
+
+		</form>
+
+	</main>
+
+	<script type="text/javascript"
+		th:src="@{webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</body>
+</html>
